@@ -2,25 +2,31 @@ import React, { Component } from "react";
 
 class Box extends Component {
   state = {
-    x: 1,
+    x: 0,
   };
 
-  handleClickLeft = () => {
-    this.setState({ x: this.state.x - 1 });
+  handleClickLeft = (step) => {
+    this.setState({ x: this.state.x - step });
   };
 
-  handleClickRight = () => {
-    this.setState({ x: this.state.x + 1 });
+  handleClickRight = (step) => {
+    this.setState({ x: this.state.x + step });
   };
 
   render() {
     return (
       <>
         <div style={this.getStyles()}> {this.toString()}</div>
-        <button onClick={this.handleClickLeft} className="btn btn-primary m-2">
+        <button
+          onClick={() => this.handleClickLeft(10)}
+          className="btn btn-primary m-2"
+        >
           left
         </button>
-        <button onClick={this.handleClickRight} className="btn btn-primary m-2">
+        <button
+          onClick={() => this.handleClickRight(10)}
+          className="btn btn-primary m-2"
+        >
           right
         </button>
       </>
@@ -36,7 +42,7 @@ class Box extends Component {
       textAlign: "center",
       lineHeight: "50px",
       borderRadius: "5px",
-      marginLeft: 10 * this.state.x,
+      marginLeft: this.state.x,
     };
 
     if (this.state.x === 0) {
